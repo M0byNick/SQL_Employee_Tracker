@@ -1,6 +1,35 @@
 Use employeesDB;
 
-Insert into employee ()
+Insert into employee (firstName, lastName, roleID, deptID)
+Values ('Baak', 'Christison', 1, 1),
+('Merrion', 'Adriaans', 7, 3),
+('Draupadi', 'McCune', 2, 1),
+('Gwawr', 'Wallis', 7, 3),
+('Slobodanka', 'Darby', 1, 1),
+('Annemarie', 'MacRae', 9, 3),
+('Nella', 'Nowell', 8, 3),
+('Bryan', 'Sanna', 13, 5),
+('Gouyen', 'Polley', 7, 3),
+('Shamsuddin', 'Ridley', 10, 3),
+('Savanna', 'Hinrichs', 16, 6),
+('Vitaly', 'Perry', 11, 4),
+('Joaquin', 'Uggeri', 15, 5),
+('Naram-Sin', 'Koszorus', 14, 5),
+('Birgit', 'Trueman', 1, 1),
+('Verochka', 'Caron', 3, 1),
+('Elof', 'Coy', 23, 7),
+('Verdandi', 'Kolaric', 12, 4),
+('Jehovah', 'Mattsson', 5, 2),
+('Karl-Heinz', 'Pereira', 24, 7),
+('Ridley', 'Maas', 6, 2),
+('Eugênia', 'Maruška', 18, 7),
+('Firuza', 'Pickering', 20, 7),
+('Temujin', 'Faulkner', 21, 7),
+('Nyongesa', 'Wojcik', 4, 2),
+('Augusto', 'Gynt', 17, 6),
+('Goran', 'Hayden', 19, 7),
+('Petrina', 'Gunnarsen', 22, 7),
+('Dominic', 'Easton', 8, 3);
 
 Insert into department (dept_name)
 Values ("Sales"),
@@ -11,7 +40,7 @@ Values ("Sales"),
 ('IT'),
 ('CSuite');
 
-Insert into role (title, salary, dept_ID)
+Insert into role (title, salary, deptID)
 Values ('Account Manager', 100000, 1),
 ('Sr. Account Manager', 150000, 1),
 ('Sales Director', 200000, 1),
