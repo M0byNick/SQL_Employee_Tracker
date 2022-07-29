@@ -40,18 +40,75 @@ module.exports = {
         {
             type: "input",
             name: "firstName",
-            message: "To add an employee, please enter their first name",
+            message: "To add an employee, please enter their first name:",
         },
         {
             type: "input",
             name: "lastName",
-            message: "Now enter their last name",
+            message: "Now enter their last name:",
+        },
+        {
+            type: "list",
+            name: "role",
+            message: "Choose the employee's position/role within the company:",
+            choices: roleArray,
         },
         {
             type: "list",
             name: "department",
-            message: "Please assign the employee to a department of your choice",
+            message: "Please assign the employee to a department of your choice:",
             choices: deptArray,
         },
-    ]
+        {
+            type: "list",
+            name: "manager",
+            message: "Choose a manager for this employee:",
+            choices: managerArray,
+        },
+    ],
+    addRole: (deptChoices) => [
+        {
+            type: "input",
+            name: "roleName",
+            message: "What will this new role be called?",
+        },
+        {
+            type: "input",
+            name: "roleSalary",
+            message: "What will this role pay an employee?",
+        },
+        {
+            type: "list",
+            name: "deptID",
+            message: "Which department will this role lie in?",
+            choices: deptChoices,
+        },
+    ],
+    updateManager: (employees) => [
+        {
+            type: "update",
+            name: "updateManager",
+            message: "Choose the employee whose manager is being updated:",
+            choices: employees,
+        },
+        {
+            type: "list",
+            name: "manager",
+            message: "Choose employee's new manager:",
+            choices: employees,
+        },
+    ],
+    updateRole: (employees, job) => [
+        {
+            type: "list",
+            name: "changeRole",
+            message: "Choose the employee whose role is going to be changed:",
+            choices: employees,
+        },
+            type: "list",
+            name: "newRole",
+            message: "Choose the employee's new job position:",
+            choices: jobs,
+    ],
+    
 }
