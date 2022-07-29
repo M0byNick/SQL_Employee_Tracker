@@ -105,10 +105,35 @@ module.exports = {
             message: "Choose the employee whose role is going to be changed:",
             choices: employees,
         },
+        {
             type: "list",
             name: "newRole",
             message: "Choose the employee's new job position:",
             choices: jobs,
+        },
     ],
-    
-}
+    deleteEmployee: (deleteEmployeeChoices) => [
+        {
+            type: "list",
+            name: "employeeID",
+            message: "Which employee would you like to remove from the database?",
+            choices: deleteEmployeeChoices,
+        },
+    ],
+    deleteRolePrompt: (deleteRoleChoices) => [
+        {
+            type: "list",
+            name: "roleID",
+            message: "Which role would you like to remove from the database?",
+            choices: deleteRoleChoices,
+        },
+    ],
+    deleteDept: (deleteDeptChoices) => [
+        {
+            type: "list",
+            name: "deptID",
+            message: "Which department would you like to remove?",
+            choices: deleteDeptChoices,
+        },
+    ]
+};
