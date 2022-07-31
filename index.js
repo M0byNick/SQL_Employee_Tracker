@@ -68,29 +68,67 @@ runApp = () => {
 
 function viewAllEmployees = () => {
     console.log("Viewing Employees")
-    connection.query(`SELECT e.employeeID, e.firstName, e.lastName, role.roleTitle, department.departmentID,
-    role.roleSalary, CONCAT(m.firstName, ' ', m.lastName) manager FROM employee m RIGHT JOIN employee e ON e.managerID = m.employeeID
+    connection.query(`SELECT e.employeeID, e.firstName, e.lastName, role.roleTitle, department.dept_name AS department,
+    role.roleSalary, CONCAT(m.firstName, ' ', m.lastName) AS manager FROM employee m RIGHT JOIN employee e ON e.managerID = m.employeeID
     JOIN role ON e.roleID = role.roleID JOIN department ON department.deptID = role.deptID ORDER BY e.employeeID ASC;`, (err, res) => {
     if (err) throw(err);
     console.table('\n', res, '\n')
+    });
+    console.log("Running Employee View");
     runApp();
-    })
 };
 
 function viewAllRoles = () => {
     console.log("Viewing Roles")
-    connection.query(`SELECT role.roleID, role.roleTitle, role.roleSalary, department.deptID
-    FROM role JOIN department ON role.deptID = department.deptID ORDER BY role.roleID ASC;`, (err, res) => {
-    if (err) throw(err);
-    console.table('\n', res, '\n')
+    connection.query(`SELECT * FROM role ORDER BY roleID ASC;`, (err, res) => {
+        if (err) throw(err);
+        console.table('\n', res, '\n')
+        res.forEach((role) => {
+            console.log(
+            `ID: ${role.id} | Title: ${role.title}\n Salary: ${role.salary}\n`);
+    });
+    console.log("Running Role View");
     runApp();
-    })
+    });
 };
 
 function viewAllDepartments = () => {
-    connection.query('SELECT * FROM department ORDER BY deptID ASC;', (err, res) => {
+    console.log("Viewing Departments")
+    connection.query(`SELECT * FROM department ORDER BY deptID ASC;`, (err, res) => {
         if(err) throw(err);
         console.table('\n', res, '\n');
+        res.forEach((department) => {
+            console.log(`ID: ${department.deptID} | ${department.dept_name} Department`);
+        });
+        console.log("Running Dept View");
         runApp();
-    })
+    });
+};
+
+function viewDepartmentBudget() {
+    console.log("Viewing Department Budget")
+    connection.query(`SELECT d.name, 
+    r.salary, sum(r.salary) AS budget
+    FROM employee e 
+    LEFT JOIN role r ON e.role_id = r.id
+    LEFT JOIN department d ON r.department_id = d.id
+    group by d.name;`, (err, res) => {
+        if(err) throw(err);
+        console.table('\n', res, '\n');
+        res.forEach((department) => {
+            console.log(
+                `Department: ${department.dept_name} \n Budget: ${department.budget} \n`,
+            );
+        });
+        console.log("Running Budget View");
+        runApp();
+    });
+};
+
+function viewAllManagers = () => {
+    console.log("Viewing Managers")
+    connection.query(`SELECT employeeID, firstName, lastName FROM employee ORDER BY employeeID ASC;`, (err, res) => {
+        if(err) throw(err);
+        return;
+    });
 };
