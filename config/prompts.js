@@ -4,26 +4,27 @@ module.exports = {
         name: "title",
         message: "Please choose the action you'd like to take with your employee database.",
         choices: [
-            "View all Employees",
-            "View Employees by Manager",
-            "View Employees by Department",
-            "View all Employee Roles",
-            "View Department Budget",
-            "Add Employee",
-            "Add Department",
-            "Add Role",
-            "Update Employee Role",
-            "Update Employee Manager",
-            "Remove Employee",
-            "Remove Department",
-            "Remove Role",
-            "Quit Database",
+            "View all employees",
+            "View employees by manager",
+            "View employees by department",
+            "View all employee roles",
+            "View department budgets",
+            "View all departments",
+            "Add employee",
+            "Add department",
+            "Add role",
+            "Update employee role",
+            "Update employee manager",
+            "Remove employee",
+            "Remove department",
+            "Remove role",
+            "Quit database",
         ],
     },
     viewByManagerPrompt: (managerChoices) => [
         {
             type: "list",
-            name: "managerID",
+            name: "managerName",
             message: "Choose an employee manager",
             choices: managerChoices,
         },
@@ -36,7 +37,15 @@ module.exports = {
             choices: deptChoices,
         },
     ],
-    addEmployee: (roleArray, deptArray, managerArray) => [
+    viewDeptBudgetPrompt: (deptChoices) => [
+        {
+            type: "list",
+            name: "deptID",
+            message: "Choose a department to view its budget",
+            choices: deptChoices,
+        },
+    ],
+    addEmployeePrompt: (roleArray, deptArray, managerArray) => [
         {
             type: "input",
             name: "firstName",
@@ -66,10 +75,10 @@ module.exports = {
             choices: managerArray,
         },
     ],
-    addRole: (deptChoices) => [
+    addRolePrompt: (deptChoices) => [
         {
             type: "input",
-            name: "roleName",
+            name: "roleTitle",
             message: "What will this new role be called?",
         },
         {
@@ -84,7 +93,12 @@ module.exports = {
             choices: deptChoices,
         },
     ],
-    updateManager: (employees) => [
+    addDepartmentPrompt: {
+        type: "input",
+        name: "department",
+        message: "What will this new department be called?",
+    },
+    updateManagerPrompt: (employees) => [
         {
             type: "update",
             name: "updateManager",
@@ -98,7 +112,7 @@ module.exports = {
             choices: employees,
         },
     ],
-    updateRole: (employees, job) => [
+    updateRolePrompt: (employees, job) => [
         {
             type: "list",
             name: "changeRole",
@@ -112,7 +126,7 @@ module.exports = {
             choices: jobs,
         },
     ],
-    deleteEmployee: (deleteEmployeeChoices) => [
+    deleteEmployeePrompt: (deleteEmployeeChoices) => [
         {
             type: "list",
             name: "employeeID",
@@ -128,7 +142,7 @@ module.exports = {
             choices: deleteRoleChoices,
         },
     ],
-    deleteDept: (deleteDeptChoices) => [
+    deleteDeptPrompt: (deleteDeptChoices) => [
         {
             type: "list",
             name: "deptID",

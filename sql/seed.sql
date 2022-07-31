@@ -1,7 +1,7 @@
-Use employeesDB;
+USE employeesDB;
 
-Insert into employee (firstName, lastName, roleID, deptID)
-Values ('Baak', 'Christison', 1, 1),
+INSERT INTO employee (firstName, lastName, roleID, deptID)
+VALUES ('Baak', 'Christison', 1, 1),
 ('Merrion', 'Adriaans', 7, 3),
 ('Draupadi', 'McCune', 2, 1),
 ('Gwawr', 'Wallis', 7, 3),
@@ -31,8 +31,8 @@ Values ('Baak', 'Christison', 1, 1),
 ('Petrina', 'Gunnarsen', 22, 7),
 ('Dominic', 'Easton', 8, 3);
 
-Insert into department (dept_name)
-Values ("Sales"),
+INSERT INTO department (dept_name)
+VALUES ("Sales"),
 ('HR'),
 ('Engineering'),
 ('Finance'),
@@ -40,8 +40,8 @@ Values ("Sales"),
 ('IT'),
 ('CSuite');
 
-Insert into role (title, salary, deptID)
-Values ('Account Manager', 100000, 1),
+INSERT INTO role (roleTitle, roleSalary, deptID)
+VALUES ('Account Manager', 100000, 1),
 ('Sr. Account Manager', 150000, 1),
 ('Sales Director', 200000, 1),
 ('HR Coordinator', 70000, 2),
