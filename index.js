@@ -2,10 +2,11 @@
 
 const inquirer = require("inquirer");
 const table = require("require.table");
+const connection = require("./config/connection");
 
 //Connection to MySQL
 const useConnection = require("./config/connection");
-const { titlePrompt } = require("./config/prompts");
+const { titlePrompt, addEmployee, addRole, updateRole, updateManager, deleteEmployee, deleteDept, deleteRolePrompt } = require("./config/prompts");
 
 //Menu set up for database manipulation
 const usePrompts = require("./config/prompts");
@@ -17,10 +18,79 @@ runApp();
 runApp = () => {
     inquirer.prompt(prompt.titlePrompt).then((response) => {
         switch (response.initialInquiry) {
-            case 'viewAllEmployees':
+            case 'View all employees':
                 viewAllEmployees();
                 break;
+            case 'View all employee roles':
+                viewAllRoles();
+                break;
+            case 'View employees by manager':
+                viewAllManagers();
+                break;
+            case 'View employees by department':
+                viewAllDepartments();
+                break;
+            case 'View department budget':
+                view
+            case 'Add employee':
+                addEmployee();
+                break;
+            case 'Add department':
+                addDepartment();
+                break;
+            case 'Add role':
+                addRole();
+                break;
+            case 'Update employee role':
+                updateRole();
+                break;
+            case 'Update employee manager':
+                updateManager();
+                break;
+            case 'Remove employee':
+                deleteEmployee();
+                break;
+            case 'Remove department':
+                deleteDept();
+                break;
+            case 'Remove role':
+                deleteRolePrompt();
+                break;
+            case 'Quit database':
+                console.log('You have exited the employee database. So long and thanks for all the fish! \n');
+                connection.end();
+                return;
+            default:
+                break;
         }
-    }
+    })
+};
 
-    };
+function viewAllEmployees = () => {
+    console.log("Viewing Employees")
+    connection.query(`SELECT e.employeeID, e.firstName, e.lastName, role.roleTitle, department.departmentID,
+    role.roleSalary, CONCAT(m.firstName, ' ', m.lastName) manager FROM employee m RIGHT JOIN employee e ON e.managerID = m.employeeID
+    JOIN role ON e.roleID = role.roleID JOIN department ON department.deptID = role.deptID ORDER BY e.employeeID ASC;`, (err, res) => {
+    if (err) throw(err);
+    console.table('\n', res, '\n')
+    runApp();
+    })
+};
+
+function viewAllRoles = () => {
+    console.log("Viewing Roles")
+    connection.query(`SELECT role.roleID, role.roleTitle, role.roleSalary, department.deptID
+    FROM role JOIN department ON role.deptID = department.deptID ORDER BY role.roleID ASC;`, (err, res) => {
+    if (err) throw(err);
+    console.table('\n', res, '\n')
+    runApp();
+    })
+};
+
+function viewAllDepartments = () => {
+    connection.query('SELECT * FROM department ORDER BY deptID ASC;', (err, res) => {
+        if(err) throw(err);
+        console.table('\n', res, '\n');
+        runApp();
+    })
+};
