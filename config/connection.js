@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
     password: "M0byNick",
     database: "employeesDB",
 });
-
+//Return an error if there is a connection error
 connection.connect(function(err) {
     if(err){
         return Promise.reject(err);

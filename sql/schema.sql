@@ -1,8 +1,10 @@
 DROP DATABASE IF EXISTS employeesDB;
 
+/*Setting up database*/
 CREATE DATABASE employeesDB;
 USE employeesDB;
 
+/*Table structure*/
 CREATE TABLE employee (
     employeeID INT AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(30),

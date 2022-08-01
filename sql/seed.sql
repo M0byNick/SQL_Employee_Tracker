@@ -1,5 +1,6 @@
 USE employeesDB;
 
+/*Fake employees*/
 INSERT INTO employee (firstName, lastName, roleID, deptID)
 VALUES ('Baak', 'Christison', 1, 1),
 ('Merrion', 'Adriaans', 7, 3),
@@ -31,6 +32,7 @@ VALUES ('Baak', 'Christison', 1, 1),
 ('Petrina', 'Gunnarsen', 22, 7),
 ('Dominic', 'Easton', 8, 3);
 
+/*Default departments in database*/
 INSERT INTO department (dept_name)
 VALUES ("Sales"),
 ('HR'),
@@ -40,6 +42,7 @@ VALUES ("Sales"),
 ('IT'),
 ('CSuite');
 
+/*Default roles in database*/
 INSERT INTO role (roleTitle, roleSalary, deptID)
 VALUES ('Account Manager', 100000, 1),
 ('Sr. Account Manager', 150000, 1),

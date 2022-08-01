@@ -1,3 +1,4 @@
+//Export module to organize prompts for user
 module.exports = {
     titlePrompt: {
         type: "list",
@@ -21,6 +22,7 @@ module.exports = {
             "Quit database",
         ],
     },
+//View elements in the database prompts
     viewByManagerPrompt: (managerChoices) => [
         {
             type: "list",
@@ -45,6 +47,7 @@ module.exports = {
             choices: deptChoices,
         },
     ],
+//Add an element to the database prompts
     addEmployeePrompt: (roleArray, deptArray, managerArray) => [
         {
             type: "input",
@@ -98,6 +101,7 @@ module.exports = {
         name: "department",
         message: "What will this new department be called?",
     },
+//Change elements in the database prompts
     updateManagerPrompt: (employees) => [
         {
             type: "update",
@@ -126,6 +130,7 @@ module.exports = {
             choices: jobs,
         },
     ],
+//Remove elements in the database prompts
     deleteEmployeePrompt: (deleteEmployeeChoices) => [
         {
             type: "list",
